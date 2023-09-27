@@ -25,15 +25,12 @@ require __DIR__ . '/auth.php';
 
 
 /* starter companies actions */
-Route::controller(CompanyController::class)->group(function () {
-    // add action fk icin
-    Route::get('/employee/add', 'getForeignKey')->name("employee-add");
-
+Route::controller(CompanyController::class)->middleware(['auth', 'verified'])->group(function () {
     // list action
     Route::get('/company/list', 'index')->name("company-list");
 
     // add action
-    Route::get('/company/add', 'add')->name("company-add");
+    Route::get('/company/add', 'create')->name("company-add");
     Route::post('/company/add-post', 'store')->name("company-add-post");
 
     // edit action, update action
@@ -41,10 +38,10 @@ Route::controller(CompanyController::class)->group(function () {
     Route::post('/company/edit-post/{id}', 'update')->name("company-edit-post");
 
     // delete action
-    Route::get('/company/delete/{id}', 'delete')->name('company-delete'); // silinecek verinin id si gerektigi icin burda da extra olarak id sini de belirttik
+    Route::get('/company/delete/{id}', 'destroy')->name('company-delete'); // silinecek verinin id si gerektigi icin burda da extra olarak id sini de belirttik
 
     //info action
-    Route::get('/company/info/{id}', 'info')->name("company-info"); // goruntulenecek verinin id si gerektigi icin burda da extra olarak id sini de belirttik
+    Route::get('/company/show/{id}', 'show')->name("company-show"); // goruntulenecek verinin id si gerektigi icin burda da extra olarak id sini de belirttik
 
 });
 
@@ -56,24 +53,24 @@ Route::controller(CompanyController::class)->group(function () {
 
 /* starter employees actions */
 
-Route::controller(EmployeeController::class)->group(function () {
+Route::controller(EmployeeController::class)->middleware(['auth', 'verified'])->group(function () {
 
     // list action
     Route::get('/employee/list', 'index')->name("employee-list");
 
     // add action
-    Route::get('/employee/add', 'add')->name("employee-add");
-    Route::post('/employee/add-post', 'save')->name("employee-add-post");
+    Route::get('/employee/add', 'create')->name("employee-add");
+    Route::post('/employee/add-post', 'store')->name("employee-add-post");
 
     // edit action, update action
     Route::get('/employee/edit/{id}', 'edit')->name("employee-edit"); // duzenleme icin burda extra olarak id sinide almaliyiz ki verileri gelsin
     Route::post('/employee/edit-post/{id}', 'update')->name("employee-edit-post");
 
     // delete action
-    Route::get('/employee/delete/{id}', 'delete')->name('employee-delete'); // silinecek verinin id si gerektigi icin burda da extra olarak id sini de belirttik
+    Route::get('/employee/delete/{id}', 'destroy')->name('employee-delete'); // silinecek verinin id si gerektigi icin burda da extra olarak id sini de belirttik
 
     //info action
-    Route::get('/employee/info/{id}', 'info')->name("employee-info"); // goruntulenecek verinin id si gerektigi icin burda da extra olarak id sini de belirttik
+    Route::get('/employee/show/{id}', 'show')->name("employee-show"); // goruntulenecek verinin id si gerektigi icin burda da extra olarak id sini de belirttik
 });
 
 /*end employees actions */

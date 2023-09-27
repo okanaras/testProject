@@ -75,7 +75,7 @@
                 <label class="form-label" for="comp_id">Company :</label><br>
                 <select class="form-control form-control-lg mb-3" data-placeholder="" name="comp_id" style="width: 100%;" required>
                   <option value="">Select your Company!</option>
-                  @foreach($fk_id as $fk)
+                  @foreach($employee as $fk)
                   <option value="{{$fk->id}}">{{$fk->name}}</option>
                   @endforeach
                 </select>

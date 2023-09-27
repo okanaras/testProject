@@ -64,7 +64,7 @@
 						<input class="form-control form-control-lg mb-3" type="mail" autocomplete="off" name="email" aria-label=".form-control-lg example">
 
 						<label class="form-label" for="logo">Logo :</label>
-						<input class="form-control form-control-lg mb-3" type="file" name="logo" aria-label=".form-control-lg example" required >
+						<input class="form-control form-control-lg mb-3" type="file" name="logo" aria-label=".form-control-lg example">
 
 						<label class="form-label" for="web_site">Web Site :</label>
 						<input class="form-control form-control-lg mb-3" type="text" name="web_site" aria-label=".form-control-lg example" >

@@ -52,62 +52,62 @@
               
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
-				<thead>
-				<tr>
-									<th>#</th>
-									<th>Name</th>
-									<th>Address</th>
-									<th>Phone</th>
-									<th>E-Mail</th>
-									<th>Logo</th>
-									<th>Web Site</th>
-									<th>Created</th>
-									<th>Updated</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<!-- foreach dongusu ile butun verilerimizi cektik loop-iteration ile oto inc aldik  -->
-								@if($company)
-									@foreach($company as $comp)
-									<tr>
-										<td>{{ $loop->iteration }}</td>
-										<td>{{ $comp-> name }}</td>
-										<td>{{ $comp-> address }}</td>
-										<td>{{ $comp-> phone }}</td>
-										<td>{{ $comp-> email }}</td>
-										<td>
-											<img src="{{asset( $comp->logo )}}" alt="bulunamadi" width="100" height="100">
-										</td>
-										<td>{{ $comp-> web_site }}</td>
-										<td>{{ $comp-> created_at }}</td>
-										<td>{{ $comp-> updated_at }}</td>
-										<td style="text-align: center; width:150px;">
-										<a href="{{route('company-info',$comp->id)}}"
-											class="btn btn-info btn-sm">Info</a>
-										<a href="{{route('company-edit',$comp->id)}}"
-											class="btn btn-secondary btn-sm">Edit</a>
-										<a href="{{route('company-delete',$comp->id)}}"
-											class="btn btn-danger btn-sm">Delete</a>
-										</td>
-									</tr>
-									@endforeach
-								@endif
-							</tbody>
-							<tfoot>
-								<tr>
-									<th>#</th>
-									<th>Name</th>
-									<th>Address</th>
-									<th>Phone</th>
-									<th>E-Mail</th>
-									<th>Logo</th>
-									<th>Web Site</th>
-									<th>Created</th>
-									<th>Updated</th>
-									<th>Action</th>
-								</tr>
-							</tfoot>
+					<thead>
+						<tr>	
+							<th>#</th>
+							<th>Name</th>
+							<th>Address</th>
+							<th>Phone</th>
+							<th>E-Mail</th>
+							<th>Logo</th>
+							<th>Web Site</th>
+							<th>Created</th>
+							<th>Updated</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- foreach dongusu ile butun verilerimizi cektik loop-iteration ile oto inc aldik  -->
+						@if($company)
+							@foreach($company as $comp)
+							<tr>
+								<td>{{ $loop->iteration }}</td>
+								<td>{{ $comp-> name }}</td>
+								<td>{{ $comp-> address }}</td>
+								<td>{{ $comp-> phone }}</td>
+								<td>{{ $comp-> email }}</td>
+								<td>
+									<img src="{{ asset('uploads/companies/'. $comp->logo) }}" alt="...logo bulunamadi" width="100" height="100">
+								</td>
+								<td>{{ $comp-> web_site }}</td>
+								<td>{{ $comp-> created_at }}</td>
+								<td>{{ $comp-> updated_at }}</td>
+								<td style="text-align: center; width:150px;">
+								<a href="{{route('company-show',$comp->id)}}"
+									class="btn btn-info btn-sm">Info</a>
+								<a href="{{route('company-edit',$comp->id)}}"
+									class="btn btn-secondary btn-sm">Edit</a>
+								<a href="{{route('company-delete',$comp->id)}}"
+									class="btn btn-danger btn-sm">Delete</a>
+								</td>
+							</tr>
+							@endforeach
+						@endif
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Address</th>
+							<th>Phone</th>
+							<th>E-Mail</th>
+							<th>Logo</th>
+							<th>Web Site</th>
+							<th>Created</th>
+							<th>Updated</th>
+							<th>Action</th>
+						</tr>
+					</tfoot>
             </table>
           
         </div>

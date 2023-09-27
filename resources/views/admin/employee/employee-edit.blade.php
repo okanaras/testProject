@@ -38,7 +38,7 @@
             </div>
             <div class="card-body">
 			<!-- BURADA EGERKI DOGRULAMA HATASI OLURSA VEYA DOGRUALAMA BASARILI ISE ONU YAZDIRDIK VE CALISAN EKLEME FORMU HAZIRLADIK -->
-      @if($errors-> any())
+                    @if($errors-> any())
                         @foreach($errors->all() as $error)
                         <div class="alert alert-danger"> {{$error}}</div>
                         @endforeach

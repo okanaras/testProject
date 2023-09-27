@@ -72,7 +72,7 @@
 								<td>{{ $emp-> created_at }}</td>
 								<td>{{ $emp-> updated_at }}</td>
 								<td style="text-align: center;">
-									<a href="{{route('employee-info',$emp->id)}}"
+									<a href="{{route('employee-show',$emp->id)}}"
 										class="btn btn-info btn-sm">Info</a>
 									<a href="{{route('employee-edit',$emp->id)}}"
 										class="btn btn-secondary btn-sm">Edit</a>

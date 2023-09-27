@@ -24,7 +24,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
             <li class="breadcrumb-item active">Microsoft v1</li>
           </ol>
         </div>
@@ -33,7 +33,7 @@
   </div>  
       <section>
         <div style="text-align: center; position:relative;">
-          <img src="{{asset('backend/mic_logo.png')}}" width="700" height="700" alt="Microsoft logo">
+          <img src="{{asset('backend/mic_logo.png')}}" width="80%" height="80%" alt="Microsoft logo">
         </div>
       </section>
   

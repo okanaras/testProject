@@ -24,7 +24,7 @@ class CompaniesFactory extends Factory
             'address' => fake()->address(),
             'phone' => $this->faker->phoneNumber(),
             'email' => fake()->unique()->safeEmail(),
-            'web_site' => fake()->firstName() . 'fake.com',
+            'web_site' => fake()->word() . '.com',
             'logo' => fake()->imageUrl(100, 100, 'company'),
         ];
     }

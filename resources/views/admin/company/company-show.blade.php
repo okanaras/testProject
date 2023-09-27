@@ -41,7 +41,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="{{asset( $company->logo )}}"
+                       src="{{ asset('uploads/companies/'.$company->logo) }}"
                        alt="User profile picture">
                 </div>
                 <h3 class="profile-username text-center">{{ $company-> name}}</h3>
@@ -66,7 +66,7 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab">Settings</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="" data-toggle="tab">Settings</a></li>
                 </ul>
               </div>
 
@@ -78,42 +78,42 @@
                       <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Name :</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="name" placeholder="Name" disabled	value=" {{ $company-> name}}  " >
+                          <input type="text" class="form-control" id="name" disabled	value=" {{ $company-> name}}  " >
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="address" class="col-sm-2 col-form-label">Address :</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="address" placeholder="Address" disabled	value=" {{ $company-> address}}  " >
+                          <input type="text" class="form-control" id="address" disabled	value=" {{ $company-> address}}  " >
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="phone" class="col-sm-2 col-form-label">Phone :</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="phone" placeholder="Phone" disabled	value=" {{ $company-> phone}}  " >
+                          <input type="text" class="form-control" id="phone" disabled	value=" {{ $company-> phone}}  " >
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">E-Mail :</label>
                         <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" placeholder="Email" disabled value=" {{ $company-> email}}  " >
+                        <input type="email" class="form-control" id="email" disabled value=" {{ $company-> email}}  " >
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="logo" class="col-sm-2 col-form-label">Logo :</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="logo" placeholder="Logo" disabled	value=" {{ $company-> logo}}  " >
+                          <input type="text" class="form-control" id="logo" disabled value=" {{ $company-> logo}}  " >
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="web_site" class="col-sm-2 col-form-label">Web Site :</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="web_site" placeholder="Web Site" disabled	value=" {{ $company-> web_site}}  " >
+                          <input type="text" class="form-control" id="web_site" disabled	value=" {{ $company-> web_site}}  " >
                         </div>
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-						<a href="{{route('company-list')}}"><input type="button" class="btn btn-danger px-4" value="Back" /></a>
+						<a href="{{ route('company-list') }}"><input type="button" class="btn btn-danger px-4" value="Back" /></a>
                         </div>
                       </div>
                     </form>

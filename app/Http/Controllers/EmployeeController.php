@@ -15,30 +15,24 @@ class EmployeeController extends Controller
     // veritabanindan verileri datatable a verilerimizi cektik
     public function index()
     {
-        $employee = Employees::get(); // burada tum verilerimizi cekip 'employee' isimli degiskene atadim
-        return view('admin.employee.employee-list', ['employee' => $employee]); // admin/company/company-list view ini dondurup diger parametreyi ise view de degiskeni tanisin diye verdim
+        $employee = Employees::all(); // burada tum verilerimizi cekip 'employee' isimli degiskene atadim
+        return view('admin.employee.employee-list', compact('employee')); // admin/company/company-list view ini dondurup diger parametreyi ise view de degiskeni tanisin diye verdim
     }
 
     // ekleme islemini yapan arayuzu burada dondurdum ve foreign key yi almak icin Companies modelinden tum verileri fk_id isimli degiskene atadim
-    public function add()
+    public function create()
     {
-        $fk_id = Companies::all();
-        return view('admin.employee.employee-add', ['fk_id' => $fk_id]);
+        $employee = Companies::all();
+        return view('admin.employee.employee-add', compact('employee'));
     }
 
     public function store(Request $request)
-    {
-
-    }
-
-    // burada ekleme actioni olusturup request ile validation yaptim 
-    public function save(Request $request)
     {
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'email:rfc,dns',
-            'phone' => 'required',
+            'phone' => 'required | digits:11',
         ]);
         Employees::create([
             'first_name' => $request->first_name,
@@ -49,24 +43,26 @@ class EmployeeController extends Controller
         ]);
         return redirect()->route('employee-list')->with('success', 'Calisan bilgisi basariyla eklendi!'); // islem tamamlandiginda ve eger basarili ise donecek kisim ve mesaj bilgisi buradaki succes degiskenini view de almak icin verdim
 
+
     }
 
+
     // edit sayfasini goruntulemek icin kullandigim duzenlenecek id yi parametre alan metot
-    public function edit($id)
+    public function edit(string $id)
     { // modelden veriyi sorguluyoruz burda extra olarak companies den fk yi da sorguladim
-        $employee = Employees::find($id);
+        $employee = Employees::findOrFail($id);
         $fk_id = Companies::all();
 
         if ($employee) {
             //eger kosul saglanirsa duzenle sayfasina yonlendiriyoruz
-            return view('admin.employee.employee-edit', compact('employee'), ['fk_id' => $fk_id]);
+            return view('admin.employee.employee-edit', compact('employee', 'fk_id'));
         } else {
             return redirect()->route("employee-list"); // eger id gelmezse liste sayfasina geri dondurulecek
         }
     }
 
     // update ve dogrulama isleminin yapildigi action
-    public function update($id, Request $request)
+    public function update(string $id, Request $request)
     {
         // dogrulama islemi
         $request->validate([
@@ -76,20 +72,14 @@ class EmployeeController extends Controller
         ]);
 
         //modelden gelen id yi bulup guncelledigimiz kisim
-        Employees::find($id)->update([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'comp_id' => $request->comp_id,
-        ]);
+        Employees::findOrFail($id)->update($request->all());
 
         // eger basarili ise dondurulen kisim ve burada post islemi oldugu icin 'id' yi de gonderiyoruz
         return redirect()->route('employee-list', $id)->with('success', 'Calisan bilgisi basariyla guncellendi!');
     }
 
     // silme isleminin gerceklestigi kisim
-    public function delete($id)
+    public function destroy(string $id)
     {
         // silinecek ogenin id sini cekiyorum
         $employee = Employees::findOrFail($id);
@@ -100,26 +90,15 @@ class EmployeeController extends Controller
     }
 
     // goruntuleme actionu 
-    public function info($id)
+    public function show(string $id)
     {
         // goruntulenecek ogenin id sini modelden cekip degiskene attim
         $employee = Employees::findOrFail($id);
-
         if ($employee) {
             //eger kosul saglanirsa info sayfasina yonlendirdim ve verilerini cekebilmek icin compact ile company degiskenini gonderdim
-            return view('admin.employee.employee-info', compact('employee'));
+            return view('admin.employee.employee-show', compact('employee'));
         } else {
             return redirect()->route("employee-list"); // eger id gelmezse liste sayfasina geri dondurulecek
         }
     }
-
-
-    // logout islemi icin olusturdugum metod
-    public function getLogout()
-    {
-        // auth modelindden logout fonksiyonunu cagirdim daha sonra varsayilan sayfaya yani login e yonlendirdim
-        Auth::logout();
-        return redirect('/');
-    }
-
 }
